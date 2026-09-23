@@ -18,9 +18,31 @@ class linkedlist:
              curr=curr.next
 
          curr.next=new_node
-         
 
 
+    def cyclic_ll(self):
+        curr=self.head
+        while curr.next!=None:
+            curr=curr.next
+
+        curr.next=self.head
+
+        ##printing the element
+
+    def display_cyc_ele(self):
+        curr=self.head
+        visited=set()
+        while curr and id(curr) not in visited:
+            print(curr.data,end="->")
+            visited.add(id(curr))
+            curr=curr.next
+
+        if curr:
+             return (f"...back to {curr.data}(cycle)")
+        
+
+        
+        
     def delete_index(self,index):
         if index==0:
             self.head=self.head.next
@@ -56,11 +78,13 @@ class linkedlist:
         
         
 
+if __name__=="__main__":
+    connect=linkedlist()
+    connect.insert(5)           
+    connect.insert(10)
+    connect.insert(15)
+    connect.insert_index(4,1)
+    connect.cyclic_ll()
 
-connect=linkedlist()
-connect.insert(5)
-connect.insert(10)
-connect.insert(15)
-connect.insert_index(4,1)
+    print(connect.display_cyc_ele())
 
-print(connect.display())
